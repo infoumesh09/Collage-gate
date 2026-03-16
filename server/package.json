@@ -1,0 +1,29 @@
+{
+  "name": "campus-access-server",
+  "version": "1.0.0",
+  "description": "Backend API for Campus Access Control",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "db:migrate": "npx prisma migrate dev",
+    "db:seed": "node seed.js",
+    "db:seed:demo": "node demo_seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "axios": "^1.13.4",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "prisma": "^5.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

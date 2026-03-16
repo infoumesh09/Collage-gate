@@ -1,0 +1,28 @@
+Open four terminals and run:
+
+1. Backend API (Node / Express + Prisma)
+   
+   ```
+   cd server
+   npm run dev
+   ```
+   - Runs on: http://localhost:3002 (API: http://localhost:3002/api )
+2. Main ML service (FastAPI, port 8000)
+   
+   ```
+   cd ml
+   python -m uvicorn main:app --host 0.0.0.0 --port 8000
+   ```
+3. Face model service (FastAPI, port 8001)
+   
+   ```
+   cd face_model_service
+   python -m uvicorn app:app --host 0.0.0.0 --port 8001
+   ```
+4. Frontend (Vite React app)
+   
+   ```
+   cd clone
+   npm run dev
+   ```
+   - Vite will show a URL like: http://localhost:5174/
