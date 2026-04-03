@@ -107,24 +107,41 @@ router.post('/archive', verifyToken, requireAdmin, async (req, res) => {
   }
 });
 
-// Get currently inside count
-router.get('/inside', async (req, res) => {
+// Get currently inside count and list of people
+router.get('/inside', verifyToken, requireAdmin, async (req, res) => {
   try {
-    // Use presence records to determine who is currently inside
-    // NOTE: In production, you might want to filter by date or session timeout
     const presences = await prisma.presence.findMany({
       where: { 
         status: 'inside'
       },
-      select: { moodle_id: true }
+      include: {
+        user: {
+          select: {
+            name: true,
+            role: true,
+            year: true,
+            division: true,
+            vehicle_plate: true
+          }
+        }
+      },
+      orderBy: {
+        entered_at: 'desc'
+      }
     });
 
-    // Count unique moodle IDs (QR scan identity is primary)
-    const insideSet = new Set(presences.map(p => p.moodle_id));
-
     res.json({
-      currently_inside: insideSet.size,
-      inside_users: Array.from(insideSet)
+      currently_inside: presences.length,
+      inside_users: presences.map(p => ({
+        moodle_id: p.moodle_id,
+        name: p.user.name,
+        role: p.user.role,
+        year: p.user.year,
+        division: p.user.division,
+        plate: p.plate || p.user.vehicle_plate,
+        entered_at: p.entered_at,
+        type: p.type
+      }))
     });
   } catch (error) {
     console.error('Get inside stats error:', error);

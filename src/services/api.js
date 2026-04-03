@@ -272,6 +272,14 @@ export const statsAPI = {
       },
     }).then(handleResponse);
   },
+  getInside: () => {
+    const token = getAuthToken();
+    return fetch(`${API_BASE_URL}/stats/inside`, {
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+    }).then(handleResponse);
+  },
 };
 
 export const usersAPI = {

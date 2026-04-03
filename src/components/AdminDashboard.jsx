@@ -368,7 +368,8 @@ const AdminDashboard = ({ onNavigate, onLogout }) => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-xl group hover:bg-white/[0.05] transition-all"
+                      onClick={() => stat.label === 'Currently Inside' && onNavigate('currently-inside')}
+                      className={`p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-xl group hover:bg-white/[0.05] transition-all ${stat.label === 'Currently Inside' ? 'cursor-pointer' : ''}`}
                     >
                       <div className={`text-2xl mb-4 ${stat.color}`}>{stat.icon}</div>
                       <div className="text-4xl font-serif text-white mb-2">{stat.value}</div>
