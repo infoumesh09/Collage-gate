@@ -55,9 +55,9 @@ const FaceScanner = ({
       setError('')
 
       await Promise.all([
-        faceapi.nets.ssdMobilenetv1.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models'),
-        faceapi.nets.faceLandmark68Net.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models'),
-        faceapi.nets.faceRecognitionNet.loadFromUri('https://justadudewhohacks.github.io/face-api.js/models')
+        faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
+        faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+        faceapi.nets.faceRecognitionNet.loadFromUri('/models')
       ])
       
       setModelsLoaded(true)
