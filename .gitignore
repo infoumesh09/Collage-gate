@@ -98,6 +98,28 @@ dist
 # Sveltekit cache directory
 .svelte-kit/
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Databases
+*.db
+*.sqlite-journal
+
+# ML Models (Large files)
+*.pt
+*.onnx
+
+# Local build files
+dist/
+build/
+.vite/
+
 # vitepress build output
 **/.vitepress/dist
 
